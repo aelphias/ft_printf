@@ -6,13 +6,14 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 13:58:56 by aelphias          #+#    #+#              #
-#    Updated: 2019/12/13 12:51:59 by aelphias         ###   ########.fr        #
+#    Updated: 2019/12/13 12:57:56 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re lib
 
-NAME	= ft_printf.c
+NAME	= ft_printf_test_out
+#NAME	= libftprintf.a
 
 SRC_DIR = ./src
 
