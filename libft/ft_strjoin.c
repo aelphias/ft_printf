@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 12:58:15 by aelphias          #+#    #+#             */
-/*   Updated: 2019/09/29 13:20:11 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/10 11:54:05 by bford             #+#    #+#             */
+/*   Updated: 2019/09/13 19:37:45 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*rslt;
+	char *fresh;
+	char *copy;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2 || !(fresh = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
 		return (NULL);
-	if (!(rslt = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
-		return (NULL);
-	ft_strcpy(rslt, s1);
-	ft_strcat(rslt, s2);
-	return (rslt);
+	copy = fresh;
+	while (*s1)
+		*fresh++ = *s1++;
+	while (*s2)
+		*fresh++ = *s2++;
+	return (copy);
 }

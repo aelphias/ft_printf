@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 21:26:19 by aelphias          #+#    #+#             */
-/*   Updated: 2019/10/07 23:24:34 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/05 20:54:16 by bford             #+#    #+#             */
+/*   Updated: 2019/09/06 18:20:00 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *s1, const char *s2)
 {
-	char *rslt;
+	char *ptr;
 
-	rslt = dst;
-	while (*src != '\0')
-	{
-		*dst = *((char *)src);
-		dst++;
-		src++;
-	}
-	*dst = '\0';
-	return (rslt);
+	ptr = s1;
+	while (*s2)
+		*s1++ = *s2++;
+	*s1 = '\0';
+	return (ptr);
 }

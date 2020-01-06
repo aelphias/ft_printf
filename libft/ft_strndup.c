@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_del_s1.c                                :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 23:19:19 by aelphias          #+#    #+#             */
-/*   Updated: 2019/10/07 23:22:15 by aelphias         ###   ########.fr       */
+/*   Created: 2019/11/11 17:55:25 by bford             #+#    #+#             */
+/*   Updated: 2019/12/05 19:13:05 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin_del_s1(char *s1, char const *s2)
+char	*ft_strndup(char const *src, int n)
 {
-	char	*rslt;
-	size_t	len;
+	char	*s;
+	int		len;
 
-	if (s1 == NULL || s2 == NULL)
+	len = n;
+	if (!src || n < 0)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if (!(rslt = (char *)malloc(sizeof(char *) * len + 1)))
+	if ((s = (char *)malloc(sizeof(char) * (n + 1))) == 0)
 		return (NULL);
-	ft_strcpy(rslt, s1);
-	ft_strcat(rslt, s2);
-	ft_strdel(&s1);
-	return (rslt);
+	while (n--)
+		*s++ = *src++;
+	*s = '\0';
+	s -= len;
+	return (s);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/23 17:45:55 by aelphias          #+#    #+#             */
-/*   Updated: 2019/10/13 15:39:32 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/09 11:42:04 by bford             #+#    #+#             */
+/*   Updated: 2020/01/06 20:36:44 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*ptr;
-	size_t	i;
-
-	if (!s || n == 0)
-		return ;
-	i = 0;
-	ptr = (char *)s;
-	while (i < n)
-	{
-		ptr[i] = '\0';
-		i++;
-	}
+	s = ft_memset(s, '\0', n);
 }

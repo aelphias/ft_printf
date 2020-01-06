@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 18:16:04 by aelphias          #+#    #+#             */
-/*   Updated: 2019/09/22 19:11:07 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/07 13:31:25 by bford             #+#    #+#             */
+/*   Updated: 2019/09/07 15:46:20 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+int		ft_toupper(int c)
 {
-	if (c > 96 && c < 123)
-		return (c - 32);
-	else
-		return (c);
+	return ((c >= 'a' && c <= 'z') ? c - 32 : c);
 }

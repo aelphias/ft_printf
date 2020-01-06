@@ -3,82 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 16:24:34 by aelphias          #+#    #+#             */
-/*   Updated: 2019/09/29 18:56:59 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/10 13:56:04 by bford             #+#    #+#             */
+/*   Updated: 2019/09/13 19:23:01 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		count_words(char const *s, char c)
+static int	ft_do_word(char **array, const char *s, int len, int w)
 {
-	int	n;
-
-	n = 0;
-	while (*s != '\0')
+	if (!(array[w] = ft_strnew(len)))
 	{
-		if (*s == c && *s != '\0')
-			s++;
-		else
-		{
-			while (*s != c && *s != '\0')
-				s++;
-			n++;
-		}
+		w--;
+		while (w >= 0)
+			free(array[w--]);
+		return (0);
 	}
-	return (n);
+	else
+		array[w] = ft_strncpy(array[w], s, len);
+	return (1);
 }
 
-static	void	ft_free_all(char **str, size_t i)
-{
-	while (i > 0)
-	{
-		ft_strdel(&str[i]);
-		i--;
-	}
-	ft_strdel(str);
-}
-
-static	char	*next_word(char const *s, char c, size_t *start)
-{
-	size_t l;
-
-	while (s[*start] == c)
-		*start += 1;
-	l = *start;
-	while (s[*start])
-	{
-		if (s[*start] == c)
-			break ;
-		*start += 1;
-	}
-	return (ft_strsub(s, l, *start - l));
-}
-
-char			**ft_strsplit(char const *s, char c)
+static int	ft_words(char const *s, char c)
 {
 	int		words;
-	size_t	i;
-	size_t	start;
-	char	**str;
+
+	words = 0;
+	while (*s)
+	{
+		if (*s != c && (*(s + 1) == c || *(s + 1) == '\0'))
+			words++;
+		s++;
+	}
+	return (words);
+}
+
+static int	ft_words_array(const char *s, char **array, char c)
+{
+	int		str;
+	int		end;
+	int		w;
+
+	w = 0;
+	str = 0;
+	while (s[str])
+	{
+		if (s[str] != c)
+		{
+			end = str + 1;
+			while (s[end] != c && s[end] != '\0')
+				end++;
+			if (!(ft_do_word(array, s + str, end - str, w++)))
+				return (0);
+			str = end;
+			continue;
+		}
+		str++;
+	}
+	array[w] = NULL;
+	return (1);
+}
+
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**array;
+	int		words;
 
 	if (!s)
 		return (NULL);
-	words = count_words(s, c);
-	str = (char**)malloc(sizeof(char*) * (words + 1));
-	if (str == NULL)
+	words = ft_words(s, c);
+	if (!(array = (char **)malloc(sizeof(char *) * (words + 1))))
 		return (NULL);
-	i = 0;
-	start = 0;
-	while (words--)
-	{
-		str[i] = next_word(s, c, &start);
-		if (!(str[i]))
-			ft_free_all(str, i);
-		i++;
-	}
-	str[i] = NULL;
-	return (str);
+	if (!(ft_words_array(s, array, c)))
+		free(array);
+	return (array);
 }

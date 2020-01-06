@@ -3,44 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 17:26:31 by aelphias          #+#    #+#             */
-/*   Updated: 2019/10/21 16:12:05 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/10 15:07:48 by bford             #+#    #+#             */
+/*   Updated: 2019/09/12 19:43:30 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	num_size(int nb)
+static int	ft_nbrlen(int n)
 {
-	int	sz;
+	int len;
 
-	sz = 1;
-	while (nb /= 10)
-		++sz;
-	return (sz);
+	len = ((n < 0) ? 1 : 0);
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }
 
 char		*ft_itoa(int n)
 {
-	char				*s;
-	int					sz;
-	unsigned	int		buf;
+	long int	copy;
+	char		*s;
+	int			len;
 
-	sz = num_size(n);
-	buf = n;
-	if (n < 0)
-	{
-		buf = -n;
-		sz++;
-	}
-	if (!(s = ft_strnew(sz)))
+	copy = (long)n;
+	len = ft_nbrlen(n) + 1;
+	if (!(s = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
-	s[--sz] = buf % 10 + '0';
-	while (buf /= 10)
-		s[--sz] = buf % 10 + '0';
+	copy *= ((n < 0) ? -1 : 1);
+	len--;
+	s[len--] = '\0';
+	while (len >= 0)
+	{
+		s[len--] = copy % 10 + '0';
+		copy /= 10;
+	}
 	if (n < 0)
-		*(s + 0) = '-';
+		s[0] = '-';
 	return (s);
 }

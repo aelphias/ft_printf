@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 12:36:15 by aelphias          #+#    #+#             */
-/*   Updated: 2019/12/13 17:09:28 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/06 19:09:57 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	main(void)
 {	
-	va_list arg;
-	write(1, "write:cAuse i can\n", 18);
-	printf("printf: me too\n");
+	char *str;
+	
+	str = "Can you print me?";
+	printf("orig %s\n", str);
+	ft_printf("ours %s\n", str);
 	return (0);
 }

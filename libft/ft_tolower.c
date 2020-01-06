@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 18:53:15 by aelphias          #+#    #+#             */
-/*   Updated: 2019/09/22 19:12:53 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/07 14:08:03 by bford             #+#    #+#             */
+/*   Updated: 2019/11/06 15:31:21 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+int		ft_tolower(int c)
 {
-	if (c > 64 && c < 91)
-		return (c + 32);
-	else
-		return (c);
+	return ((c >= 'A' && c <= 'Z') ? c + 32 : c);
 }

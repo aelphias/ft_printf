@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 19:14:04 by aelphias          #+#    #+#             */
-/*   Updated: 2019/09/28 19:38:53 by aelphias         ###   ########.fr       */
+/*   Created: 2019/09/10 10:45:02 by bford             #+#    #+#             */
+/*   Updated: 2019/09/13 19:24:56 by bford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_striter(char *s, void (*f)(char *))
 {
 	if (s && f)
-	{
 		while (*s)
 			f(s++);
-	}
 }
