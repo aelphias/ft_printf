@@ -1,5 +1,5 @@
-# printf
-printf project, school 42
+# ft_printf
+ft_printf project, school 42
 
 Conversion Character	Displays
 %%	The percent character, %
