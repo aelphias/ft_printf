@@ -1,5 +1,6 @@
 # ft_printf
-ft_printf project, school 42 , write printf analog in accordance with norm of school in c language and not die.
+ft_printf project, school 42 , write printf analog in accordance with norm of school in c language have fun 
+during the process!
 
 Conversion Character	Displays
 %%	The percent character, %
