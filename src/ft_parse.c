@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/06 21:54:40 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/06 22:18:42 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,20 @@ void	ft_init_struct_printf(struct s_printf *printf, char *s)
 	printf->precision = 0;
 }
 
-void	ft_handle(struct s_printf printf, char *s)
+void	ft_handle_flags(struct s_printf printf, char *s)
 {
-	int i;
-	char c;
-	
-	i = 0;
-	c = 0;
-	if (*s == ' ')
-	if (*s == '#')
-	if (*s == '-')
-	if (*s == '+')
 	if (*s == '%')
-	{
-			
-	}
-	
+		printf.flag |= PERCENT;
+	if (*s == ' ')
+		printf.flag |= SPACE;
+	if (*s == '#')
+		printf.flag |= HASH;
+	if (*s == '0')
+		printf.flag |= ZERO;
+	if (*s == '+')
+		printf.flag |= PLUS;
+	if (*s == '-')
+		printf.flag |= MINUS;
 }
 
 void ft_printf(char *s, ...)
@@ -49,7 +47,7 @@ void ft_printf(char *s, ...)
     {
 		if (*s == '%')
 		{
-			ft_handle(printf, s);
+			ft_handle_flags(printf, s);
 			continue;
 		}
 		else
