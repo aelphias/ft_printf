@@ -6,11 +6,11 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 16:33:33 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/07 16:35:26 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/07 17:41:07 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	=		ft_parse.c
+SRC	=		ft_printf.c
 
 OBJ =		$(SRC:.c=.o)
 

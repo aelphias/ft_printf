@@ -15,9 +15,6 @@
 
 int main(void)
 {
-    int a;
-    
-    a = 1;
-	ft_printf("   %   + 0  -d   \n", 12);                                                                                                                                 
+	ft_printf("   gndjghisd %  + #   12.13llf   %00.666u ");    
     return (0);
 }
