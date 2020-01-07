@@ -6,49 +6,48 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 13:58:56 by aelphias          #+#    #+#              #
-#    Updated: 2019/12/13 12:57:56 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/07 16:41:23 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re lib
 
-NAME	= ft_printf_test_out
-#NAME	= libftprintf.a
+NAME =			ft_printf_test
 
-SRC_DIR = ./src
+SRC =			main.c
 
-FILES	=	main.c	
-	
-SRC		= $(addprefix $(SRC_DIR)/,$(FILES))
+OBJ =			$(SRC:.c=.o)
 
-INC		= ft_printf.h
+FT_LIB =		libft/libft.a
 
-OBJ		= $(SRC:.c=.o)
+FT_PRINT =		ft_printf/libftprintf.a
 
-FT_LIB = libft/libft.a
+CFLAGS =		-Wall -Wextra -Werror -g
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror 
+all:			$(NAME)
 
-all:  $(NAME)
+%.o:			%.c
+				gcc -Wall -Werror -Wextra -g -I ./libft -I ./ft_printf -o $@ -c $<
 
-$(NAME): $(OBJ) $(FT_LIB) ./libft/libft.a
-	$(CC) $(CFLAGS) -L ./libft -lft -I . -I ./libft $(OBJ) -o $(NAME)
+$(NAME):		$(FT_LIB) $(FT_PRINT) $(OBJ) libft/libft.a ft_printf/libftprintf.a
+				gcc $(CFLAGS) -o $(NAME) $(OBJ) -L ./libft -lft -L ./ft_printf -lftprintf
 
-%.o: %.c $(INC)
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
+FORCE:			;
 
-FORCE:		;
+$(FT_LIB):		FORCE
+				make -C ./libft
 
-$(FT_LIB):	FORCE
-			make -C ./libft
+$(FT_PRINT):	FORCE
+				make -C ./ft_printf
 
 clean:		
-	/bin/rm -f $(OBJ)
-	make clean -C ./libft
+				/bin/rm -f $(OBJ)
+				make clean -C ./libft
+				make clean -C ./ft_printf
 
-fclean: 	clean
-	make fclean -C ./libft
-	/bin/rm -f $(NAME)
-
-re: fclean all
+fclean: 		clean
+				make fclean -C ./libft
+				make fclean -C ./ft_printf
+				/bin/rm -f $(NAME)
+				
+re:				fclean all
