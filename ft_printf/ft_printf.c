@@ -6,11 +6,21 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/07 19:08:37 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/09 19:43:32 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_zero_params(struct s_printf *myprintf)
+{
+	myprintf->spec = '0';
+	myprintf->flag = '0';
+	myprintf->point = '0';
+	myprintf->width = 0;
+	myprintf->precision = 0;
+	myprintf->size = 0;
+}
 
 void	ft_parse_specification(struct s_printf *myprintf, char *s)
 {
@@ -26,11 +36,10 @@ void	ft_parse_specification(struct s_printf *myprintf, char *s)
 		myprintf->spec = *s;
 	if (myprintf->spec)
 		s++;
-
-	if (!myprintf->spec)
-		printf("Specification: none\n");
-	else
-		printf("Specification = %c\n", myprintf->spec);
+ 	if (!myprintf->spec)    // DEL
+		printf("Specification: none\n");// DEL
+	else// DEL
+		printf("Specification = %c\n", myprintf->spec);// DEL
 }
 
 void	ft_parse_size(struct s_printf *myprintf, char *s)
@@ -140,24 +149,22 @@ void	ft_parse_flags(struct s_printf *myprintf, char *s)
 
 int		ft_printf(char *s, ...)
 {	
-	va_list				args;
+	//va_list				args;
 	struct s_printf		myprintf;
 	
-    va_start(args, s);
+    //va_start(args, s);
 	ft_init_struct_printf(&myprintf, s);
     while (*s != '\0')
     {
 		if (*s == '%')
 		{
-			ft_memset(&myprintf, '\0', sizeof(char) * 16);
 			ft_parse_flags(&myprintf, ++s);
-			ft_memset(&myprintf, '\0', sizeof(char) * 16);
-			// ft_zero_params;
-			continue;
+			ft_zero_params(&myprintf);
+			//continue;
 		}
 		myprintf.all_len++;
 		s++;
     }
-    va_end(args);
+    //va_end(args);
 	return (1);
 }

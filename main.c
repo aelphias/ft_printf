@@ -15,6 +15,7 @@
 
 int main(void)
 {
-	ft_printf("   gndjghisd %  + #   12.13llf   %00.666u ");    
+	//ft_printf("   gndjghisd %  + #   10.13llf   %00.666u ");    
+	ft_printf(" % 2.i ");    
     return (0);
 }

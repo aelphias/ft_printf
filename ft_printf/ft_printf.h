@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:49:46 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/07 19:00:05 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/09 15:29:36 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ struct      s_printf
 {
 	char	*s;
     char    flag; // in binary
-    int		width;
 	char	point;
+	char	spec;
+    int		width;
 	int		precision;
 	int		size;
-	char	spec;
 	int		all_len;
 	//va_list check_length;
 	//va_list handle_spec;
