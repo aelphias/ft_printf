@@ -6,21 +6,11 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/09 19:43:32 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/10 17:24:26 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_zero_params(struct s_printf *myprintf)
-{
-	myprintf->spec = '0';
-	myprintf->flag = '0';
-	myprintf->point = '0';
-	myprintf->width = 0;
-	myprintf->precision = 0;
-	myprintf->size = 0;
-}
 
 void	ft_parse_specification(struct s_printf *myprintf, char *s)
 {
@@ -80,6 +70,26 @@ void	ft_parse_size(struct s_printf *myprintf, char *s)
 	ft_parse_specification(myprintf, s);
 }
 
+void	ft_parse_astericks(int *astericks, char **s, va_list *check_length)
+{
+	//s++;
+	while (ft_isdigit(**s) || **s == '*')
+	{
+		*astericks = 0;
+		if (**s == '*' && ++(*s))
+		{
+			*astericks = va_arg(*check_length, int);
+			continue;
+		}
+		while (ft_isdigit(**s))
+		{
+			*astericks *= 10;
+			*astericks += **s - '0';
+			(*s)++;
+		}
+	}
+}
+
 void	ft_parse_width_n_precision(struct s_printf *myprintf, char *s)
 {
 	int		*width;
@@ -87,17 +97,13 @@ void	ft_parse_width_n_precision(struct s_printf *myprintf, char *s)
 
 	width = &myprintf->width;
 	precision = &myprintf->precision;
-	while (ft_isdigit(*s))
-	{
-		*width *= 10;
-		*width += *s++ - '0';
-	}
+	
+	//s++;
+	printf("          S1 = %s\n", s);
+	ft_parse_astericks(width, &s, &myprintf->check_length);
 	myprintf->point +=  *s == '.' ? !!++s : 0;
-	while (ft_isdigit(*s))
-	{
-		*precision *= 10;
-		*precision += *s++ - '0';
-	}
+	printf("          S2 = %s\n", s);
+	ft_parse_astericks(precision, &s, &myprintf->check_length);
 
 	printf("Width = %d | point = %d | prec = %d\n",
 	myprintf->width, myprintf->point, myprintf->precision);
@@ -105,9 +111,10 @@ void	ft_parse_width_n_precision(struct s_printf *myprintf, char *s)
 	ft_parse_size(myprintf, s);
 }
 
-void	ft_init_struct_printf(struct s_printf *myprintf, char *s)
+void	ft_init_struct_printf(struct s_printf *myprintf, char *s, va_list args)
 {	
 	ft_bzero(myprintf, sizeof(struct s_printf));
+	va_copy(myprintf->check_length, args);
 	myprintf->s = s;
 }
 
@@ -149,22 +156,20 @@ void	ft_parse_flags(struct s_printf *myprintf, char *s)
 
 int		ft_printf(char *s, ...)
 {	
-	//va_list				args;
+	va_list				args;
 	struct s_printf		myprintf;
-	
-    //va_start(args, s);
-	ft_init_struct_printf(&myprintf, s);
+    va_start(args, s);
+	ft_init_struct_printf(&myprintf, s, args);
     while (*s != '\0')
     {
 		if (*s == '%')
 		{
 			ft_parse_flags(&myprintf, ++s);
-			ft_zero_params(&myprintf);
-			//continue;
+			ft_memset(&myprintf, 0, 15);
 		}
 		myprintf.all_len++;
 		s++;
     }
-    //va_end(args);
+    va_end(args);
 	return (1);
 }

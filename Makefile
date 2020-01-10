@@ -6,7 +6,7 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 13:58:56 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/07 16:41:23 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/10 13:11:16 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ CFLAGS =		-Wall -Wextra -Werror -g
 all:			$(NAME)
 
 %.o:			%.c
-				gcc -Wall -Werror -Wextra -g -I ./libft -I ./ft_printf -o $@ -c $<
+				gcc -g -I ./libft -I ./ft_printf -o $@ -c $<
 
 $(NAME):		$(FT_LIB) $(FT_PRINT) $(OBJ) libft/libft.a ft_printf/libftprintf.a
-				gcc $(CFLAGS) -o $(NAME) $(OBJ) -L ./libft -lft -L ./ft_printf -lftprintf
+				gcc  -o $(NAME) $(OBJ) -L ./libft -lft -L ./ft_printf -lftprintf
 
 FORCE:			;
 

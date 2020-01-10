@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:49:46 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/09 15:29:36 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/10 13:42:30 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@
 
 struct      s_printf
 {
-	char	*s;
     char    flag; // in binary
 	char	point;
 	char	spec;
     int		width;
 	int		precision;
 	int		size;
+	char	*s;
 	int		all_len;
-	//va_list check_length;
+	va_list check_length;
 	//va_list handle_spec;
 }			t_printf;
 
 	void	ft_parse_flags(struct s_printf *myprintf, char *s);
-	void	ft_init_struct_printf(struct s_printf *myprintf, char *s);
+	void	ft_init_struct_printf(struct s_printf *myprintf, char *s, va_list args);
 	int		ft_printf(char *s, ...);
 
 #endif
