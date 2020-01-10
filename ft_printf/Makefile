@@ -5,31 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/07 16:33:33 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/07 17:41:07 by aelphias         ###   ########.fr        #
+#    Created: 2019/12/10 13:58:56 by aelphias          #+#    #+#              #
+#    Updated: 2020/01/10 13:11:16 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	=		ft_printf.c
+.PHONY: all clean fclean re lib
 
-OBJ =		$(SRC:.c=.o)
+NAME =			ft_printf_test
 
-HEAD =		ft_printf.h
+SRC =			main.c
 
-NAME =		libftprintf.a
+OBJ =			$(SRC:.c=.o)
 
-all:		$(NAME)
+FT_LIB =		libft/libft.a
 
-$(NAME):	$(OBJ)
-			ar -rcs $(NAME) $(OBJ)
+FT_PRINT =		ft_printf/libftprintf.a
 
-%.o:		%.c $(HEAD)
-			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@
+CFLAGS =		-Wall -Wextra -Werror -g
 
-clean:
-			rm -f $(OBJ)
+all:			$(NAME)
 
-fclean:		clean
-			rm -f $(NAME)
+%.o:			%.c
+				gcc -g -I ./libft -I ./ft_printf -o $@ -c $<
 
-re:			fclean all
+$(NAME):		$(FT_LIB) $(FT_PRINT) $(OBJ) libft/libft.a ft_printf/libftprintf.a
+				gcc  -o $(NAME) $(OBJ) -L ./libft -lft -L ./ft_printf -lftprintf
+
+FORCE:			;
+
+$(FT_LIB):		FORCE
+				make -C ./libft
+
+$(FT_PRINT):	FORCE
+				make -C ./ft_printf
+
+clean:		
+				/bin/rm -f $(OBJ)
+				make clean -C ./libft
+				make clean -C ./ft_printf
+
+fclean: 		clean
+				make fclean -C ./libft
+				make fclean -C ./ft_printf
+				/bin/rm -f $(NAME)
+				
+re:				fclean all
