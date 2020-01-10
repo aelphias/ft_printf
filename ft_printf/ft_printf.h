@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:49:46 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/10 13:42:30 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/10 21:13:33 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define SIZE_L 103
 # define SIZE_H 104
 
-struct      s_printf
+typedef	struct	s_printf
 {
     char    flag; // in binary
 	char	point;

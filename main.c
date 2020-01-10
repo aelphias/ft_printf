@@ -15,9 +15,11 @@
 
 int main(void)
 {
-	ft_printf("   gndjghisd %  + #   10.13llf   %44.789u ");    
+	//ft_printf("   gndjghisd %10.13llf   %44.789u ");    
+	ft_printf("---+++ %  ---30.13f");    
 	// ft_printf(" % 2.10ill ");    
 	//ft_printf("%6.*d\n", 18, 98, 432);
 	//printf("%+d\n", -18);
+	//printf(" %30.13f", 34.41);    
     return (0);
 }
