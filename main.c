@@ -16,10 +16,11 @@
 int main(void)
 {
 	//ft_printf("   gndjghisd %10.13llf   %44.789u ");    
-	ft_printf("---+++ %  ---30.13f");    
+	//ft_printf("---+++ %  ---30.13f");    
 	// ft_printf(" % 2.10ill ");    
 	//ft_printf("%6.*d\n", 18, 98, 432);
 	//printf("%+d\n", -18);
 	//printf(" %30.13f", 34.41);    
-    return (0);
+	ft_printf("%s\n %s\n" "%s\n", "Can you see me?", "Yes, I can!", "And me also?");
+	return (0);
 }
