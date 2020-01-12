@@ -6,23 +6,15 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/11 20:01:05 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/12 20:19:15 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_print_s(t_printf *myprintf, va_list args)
-{
-	char str_tmp[10000];
-	
-	bzero(str_tmp, 10000);
-	if (myprintf->spec & STRING)
-	//	ft_strcpy(va_arg(args, char*), str_tmp);
-	printf("%s", va_arg(args, char*));
-}
 
-void	ft_parse_specification(t_printf *myprintf, char *s)
+
+void	ft_parse_specification(t_printf *myprintf, const char *s)
 {
 	/* NIKITOS --->
 		
@@ -43,22 +35,24 @@ void	ft_parse_specification(t_printf *myprintf, char *s)
 	//	printf("Specification: none\n");// DEL
 	//else// DEL
 	//printf("Specification = %c\n", myprintf->spec);// DEL
-
 	if (*s == 'd' || *s == 'i')
+		myprintf->spec |= INTEGER;
+	else if (*s == 's')
 		myprintf->spec |= STRING;
 	else if (*s == 'o')
-		myprintf->spec = *s;
+		myprintf->spec |= OCTAL;
 	else if (*s == 'u')
-		myprintf->spec = *s;
-	else if (*s == 'X' || *s == 'x')
-		myprintf->spec = *s;
+		myprintf->spec |= UNSIGNED;
+	else if (*s == 'X')
+		myprintf->spec |= HEX_UP;
+	else if (*s == 'x')
+		myprintf->spec |= HEX;
 	else if (*s == 'f')
-		myprintf->spec = *s;
+		myprintf->spec |= FLOAT;
 	if (myprintf->spec)
 		s++;
-	
 }
-void	ft_parse_size(t_printf *myprintf, char *s)
+void	ft_parse_size(t_printf *myprintf, const char *s)
 {
 	int		*size;
 
@@ -96,7 +90,7 @@ void	ft_parse_size(t_printf *myprintf, char *s)
 	ft_parse_specification(myprintf, s);
 }
 
-void	ft_parse_astericks(int *astericks, char **s, va_list *check_length)
+void	ft_parse_astericks(int *astericks, const char **s, va_list *check_length)
 {
 	while (ft_isdigit(**s) || **s == '*')
 	{
@@ -115,7 +109,7 @@ void	ft_parse_astericks(int *astericks, char **s, va_list *check_length)
 	}
 }
 
-void	ft_parse_width_n_precision(t_printf *myprintf, char *s)
+void	ft_parse_width_n_precision(t_printf *myprintf, const char *s)
 {
 	int		*width;
 	int		*precision;
@@ -135,14 +129,14 @@ void	ft_parse_width_n_precision(t_printf *myprintf, char *s)
 	ft_parse_size(myprintf, s);
 }
 
-void	ft_init_struct_printf(t_printf *myprintf, char *s, va_list args)
+void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args)
 {	
 	ft_bzero(myprintf, sizeof(t_printf));
 	va_copy(myprintf->check_length, args);
-	myprintf->s = s;
+	myprintf->s = (char *)s;
 }
 
-void	ft_parse_flags(t_printf *myprintf, char *s)
+void	ft_parse_flags(t_printf *myprintf, const char *s)
 {
 	while (*s == ' ' || *s == '+' || *s == '-' || *s == '0' || *s == '#')
 	{
@@ -178,12 +172,12 @@ void	ft_parse_flags(t_printf *myprintf, char *s)
 	ft_parse_width_n_precision(myprintf, s);
 }
 
-int		ft_printf(char *s, ...)
+int		ft_printf(const char *s, ...)
 {	
-	va_list				args;
-	t_printf		myprintf;
-	int				prcnt;
-	int				i;
+	va_list		args;
+	t_printf	myprintf;
+	int			prcnt;
+	int			i;
 
 	prcnt = 0;
 	i = 0;
@@ -200,14 +194,7 @@ int		ft_printf(char *s, ...)
 		myprintf.all_len++;
 		s++;
     }
-	while (i < prcnt)
-	{
-		printf("%s",va_arg(args, char*));
-		i++;
-	}
-	//ft_print_s(&myprintf, args);
-//	printf("{  ft_printf  myprintf.all_len= %d }\n", myprintf.all_len);
+	ft_count_str(&myprintf, args, prcnt);
     va_end(args);
 	return (1);
 }
-

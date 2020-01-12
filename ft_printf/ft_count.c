@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
-
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/13 12:36:15 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/07 16:16:49 by aelphias         ###   ########.fr       */
+/*   Created: 2020/01/12 18:40:55 by aelphias          #+#    #+#             */
+/*   Updated: 2020/01/12 19:47:53 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int main(void)
+int ft_count_str(t_printf *myprintf, va_list args, int prcnt)
 {
-	//ft_printf("   gndjghisd %  + #   10.13llf   %00.666u ");    
-	// ft_printf(" % 2.10ill ");    
-	//ft_printf("%6.*d\n", 18, 98, 432);
-	printf("%s", "Can you count?");
+	int counter;
+	int i;
 
-    return (0);
+	i = 0;
+	counter = 0;
+	if (myprintf->spec & STRING)
+    {
+	  while (i < prcnt)
+	  {
+	  	counter = ft_strlen(va_arg(args, char*));
+        i++;
+	  }
+    }
+	printf("%s", va_arg(args, char*));
+    return (counter);
 }

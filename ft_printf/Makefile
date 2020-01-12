@@ -6,11 +6,11 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 16:33:33 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/10 13:10:37 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/12 20:20:03 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	=		ft_printf.c
+SRC	=		ft_printf.c ft_count.c
 
 OBJ =		$(SRC:.c=.o)
 
