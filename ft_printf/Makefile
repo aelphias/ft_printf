@@ -6,7 +6,7 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/07 16:33:33 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/12 20:20:03 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/13 14:38:47 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME =		libftprintf.a
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			ar -rcs $(NAME) $(OBJ)
+			@ar -rcs $(NAME) $(OBJ)
 
 %.o:		%.c $(HEAD)
 			gcc -I ./ -Wall -Wextra -Werror -g -c $< -o $@

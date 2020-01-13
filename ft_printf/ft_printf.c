@@ -6,13 +6,11 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/12 20:19:15 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/13 19:39:36 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 void	ft_parse_specification(t_printf *myprintf, const char *s)
 {
@@ -30,7 +28,7 @@ void	ft_parse_specification(t_printf *myprintf, const char *s)
 		myprintf->spec = *s;
 	if (myprintf->spec)
 		s++; 
-		<---- NIKITOS*/
+		<---- NIKITOS */
  	//if (!myprintf->spec)    // DEL
 	//	printf("Specification: none\n");// DEL
 	//else// DEL
@@ -84,9 +82,7 @@ void	ft_parse_size(t_printf *myprintf, const char *s)
 		*size = SIZE_L;
 		++s;
 	}
-	
 	//printf("Additional size = %d\n", *size); // DEL
-
 	ft_parse_specification(myprintf, s);
 }
 
@@ -136,7 +132,7 @@ void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args)
 	myprintf->s = (char *)s;
 }
 
-void	ft_parse_flags(t_printf *myprintf, const char *s)
+void	ft_parse_flags(t_printf *myprintf, const char *s, va_list args)
 {
 	while (*s == ' ' || *s == '+' || *s == '-' || *s == '0' || *s == '#')
 	{
@@ -170,16 +166,17 @@ void	ft_parse_flags(t_printf *myprintf, const char *s)
 	// else
 	// 	printf("	none\n");
 	ft_parse_width_n_precision(myprintf, s);
+	//ft_count_str(myprintf, args, prcnt);
+	ft_count_str(myprintf, args);
+
 }
 
 int		ft_printf(const char *s, ...)
 {	
-	va_list		args;
 	t_printf	myprintf;
-	int			prcnt;
+	va_list		args;
 	int			i;
 
-	prcnt = 0;
 	i = 0;
     va_start(args, s);
 	ft_init_struct_printf(&myprintf, s, args);
@@ -187,14 +184,13 @@ int		ft_printf(const char *s, ...)
     {
 		if (*s == '%')
 		{
-			ft_parse_flags(&myprintf, ++s);
+			ft_parse_flags(&myprintf, ++s, args);
 			ft_memset(&myprintf, 0, 15);
-			prcnt++;
 		}
 		myprintf.all_len++;
 		s++;
     }
-	ft_count_str(&myprintf, args, prcnt);
+	printf("%d", myprintf.all_len);    
     va_end(args);
 	return (1);
 }
