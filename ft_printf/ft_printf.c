@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/13 19:39:36 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/16 19:33:07 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_parse_specification(t_printf *myprintf, const char *s)
 	if (*s == 'd' || *s == 'i')
 		myprintf->spec |= INTEGER;
 	else if (*s == 's')
-		myprintf->spec |= STRING;
+		myprintf->spec |= STRING;		
 	else if (*s == 'o')
 		myprintf->spec |= OCTAL;
 	else if (*s == 'u')
@@ -49,6 +49,11 @@ void	ft_parse_specification(t_printf *myprintf, const char *s)
 		myprintf->spec |= FLOAT;
 	if (myprintf->spec)
 		s++;
+	if (!myprintf->spec)    // DEL
+	printf("Specification: none\n");// DEL
+		else// DEL
+	printf("Specification = %d\n", myprintf->spec);// DEL
+	//ft_count_str(myprintf, args);	
 }
 void	ft_parse_size(t_printf *myprintf, const char *s)
 {
@@ -82,11 +87,11 @@ void	ft_parse_size(t_printf *myprintf, const char *s)
 		*size = SIZE_L;
 		++s;
 	}
-	//printf("Additional size = %d\n", *size); // DEL
+	printf("Additional size = %d\n", *size); // DEL
 	ft_parse_specification(myprintf, s);
 }
 
-void	ft_parse_astericks(int *astericks, const char **s, va_list *check_length)
+void	ft_parse_round_dot(int *astericks, const char **s, va_list *check_length)
 {
 	while (ft_isdigit(**s) || **s == '*')
 	{
@@ -96,6 +101,7 @@ void	ft_parse_astericks(int *astericks, const char **s, va_list *check_length)
 			*astericks = va_arg(*check_length, int);
 			continue;
 		}
+		printf("{ astericks  %d\n}", *astericks);
 		while (ft_isdigit(**s))
 		{
 			*astericks *= 10;
@@ -113,14 +119,14 @@ void	ft_parse_width_n_precision(t_printf *myprintf, const char *s)
 	width = &myprintf->width;
 	precision = &myprintf->precision;
 	
-//	printf("          S1 = %s\n", s);
-	ft_parse_astericks(width, &s, &myprintf->check_length);
+	printf("          S1 = %s\n", s);
+	ft_parse_round_dot(width, &s, &myprintf->check_length);
 	myprintf->point +=  *s == '.' ? !!++s : 0;
-//	printf("          S2 = %s\n", s);
-//	ft_parse_astericks(precision, &s, &myprintf->check_length);
+	printf("          S2 = %s\n", s);
+	ft_parse_round_dot(precision, &s, &myprintf->check_length);
 
-//	printf("Width = %d | point = %d | prec = %d\n",
-//	myprintf->width, myprintf->point, myprintf->precision);
+	printf("Width = %d | point = %d | prec = %d\n",
+	myprintf->width, myprintf->point, myprintf->precision);
 	
 	ft_parse_size(myprintf, s);
 }
@@ -132,7 +138,7 @@ void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args)
 	myprintf->s = (char *)s;
 }
 
-void	ft_parse_flags(t_printf *myprintf, const char *s, va_list args)
+void	  ft_parse_flags(t_printf *myprintf, const char *s)
 {
 	while (*s == ' ' || *s == '+' || *s == '-' || *s == '0' || *s == '#')
 	{
@@ -148,27 +154,24 @@ void	ft_parse_flags(t_printf *myprintf, const char *s, va_list args)
 			myprintf->flag |= MINUS;
 		s++;
 	}
-	// printf("Flags: ");
-	// if (myprintf->flag)
-	// {
-	// 	if (myprintf->flag & MINUS)
-	// 		printf("-  ");
-	// 	if (myprintf->flag & PLUS)
-	// 		printf("+  ");
-	// 	if (myprintf->flag & HASH)
-	// 		printf("#  ");
-	// 	if (myprintf->flag & ZERO)
-	// 		printf("0  ");
-	// 	if (myprintf->flag & SPACE)
-	// 		printf("space  ");
-	// 	printf("\n");
-	// }
-	// else
-	// 	printf("	none\n");
+	printf("Flags: "); //DEL
+	if (myprintf->flag)
+	{
+		if (myprintf->flag & MINUS)
+			printf("-  ");
+		if (myprintf->flag & PLUS)
+			printf("+  ");
+		if (myprintf->flag & HASH)
+			printf("#  ");
+		if (myprintf->flag & ZERO)
+			printf("0  ");
+		if (myprintf->flag & SPACE)
+			printf("space  ");
+		printf("\n");
+	}
+	else
+		printf("	none\n");
 	ft_parse_width_n_precision(myprintf, s);
-	//ft_count_str(myprintf, args, prcnt);
-	ft_count_str(myprintf, args);
-
 }
 
 int		ft_printf(const char *s, ...)
@@ -184,13 +187,14 @@ int		ft_printf(const char *s, ...)
     {
 		if (*s == '%')
 		{
-			ft_parse_flags(&myprintf, ++s, args);
+			ft_parse_flags(&myprintf, ++s);
+			ft_count_str(&myprintf, args);
 			ft_memset(&myprintf, 0, 15);
 		}
 		myprintf.all_len++;
 		s++;
     }
-	printf("%d", myprintf.all_len);    
+	printf("{ myprintf.all_len =%d}\n", myprintf.all_len);    
     va_end(args);
 	return (1);
 }

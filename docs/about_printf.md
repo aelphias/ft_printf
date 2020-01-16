@@ -1,13 +1,10 @@
-Syntax
-The syntax for a format placeholder is
-
-%[parameter][flags][width][.precision][length]type
+Format string
+The format string is of the form
+% [flags] [field_width] [.precision] [length_modifier] conversion_character
 Спецификатор формата имеет вид:
 
 %[флаги][ширина][.точность][размер]тип
 A format specifier follows this prototype: [see compatibility note below]
-%[flags][width][.precision][length]specifier
-
 specifier	Output	Example
 d or i	Signed decimal integer	392
 u	Unsigned decimal integer	7235
