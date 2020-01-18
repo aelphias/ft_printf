@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:49:46 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/16 19:25:28 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/18 18:13:51 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,27 @@
 # define HASH 8
 # define SPACE 16
 
-# define SIZE_LL 100
-# define SIZE_HH 101
-# define SIZE_BIG_L 102
-# define SIZE_L 103
-# define SIZE_H 104
+# define SIZE_LL 1
+# define SIZE_HH 2
+# define SIZE_BIG_L 4
+# define SIZE_L 8
+# define SIZE_H 16
 
-# define STRING 201
-# define INTEGER 202
-# define UNSIGNED 203
-# define OCTAL 204
-# define HEX 205
-# define HEX_UP 206
-# define FLOAT 207
+# define CHAR 'c'
+# define STRING 's'
+# define INTEGER 'd'
+# define UNSIGNED 'u'
+# define OCTAL 'o'
+# define HEX 'x'
+# define HEX_UP 'X'
+# define FLOAT 'f'
+# define PERCENT '%'
 
 typedef	struct	s_printf
 {
     char    flag; // in binary
 	char	point;
-	char	spec;
+	int		spec;
     int		width;
 	int		precision;
 	int		size;
@@ -52,8 +54,10 @@ typedef	struct	s_printf
 }			t_printf;
 
 	int	ft_printf(const char *s, ...);
-	void	ft_parse_flags(t_printf *myprintf, const char *s);
-	void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args);
+	//void	ft_parse_flags(t_printf *myprintf, const char *s);
+	//void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args);
 	void	ft_count_str(t_printf *myprintf, va_list args);
+	void ft_count(t_printf *myprintf, va_list args);
+	void ft_count_char(t_printf *myprintf);
 
 #endif

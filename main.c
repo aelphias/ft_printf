@@ -19,10 +19,14 @@ int main(void)
 	char *s1 = "Sky is blue,";
 	char *s2 = "Honey is sweet,";
 	char *s3 = "So are you.";
-	char *s4 = "Love";
+	char *s4 = "love";
 	int sym;
+	char ch;
+	char ch1;
 
 	sym = 0;
+	ch = 'A';
+	ch1 = 'B';
 	// ft_printf("   gndjghisd %10.13llf   %44.789u ");    
 	//ft_printf("---+++ %  ---30.13f");    
 	// ft_printf(" % 2.10ill ");    
@@ -40,7 +44,11 @@ int main(void)
 	// printf("orig:\n");
 	// sym = printf("%2.1s", s4);
 	// printf(" orig printed:%d", sym);
-	//ft_printf("  + %0.d");
-	ft_printf(" %1.2s ", s0);
+	//ft_printf(" fsdfsd %d dgdfhgtt  + %0.d", );
+	ft_printf("%s  %s", s4,s4);
+	printf("original:\n");
+	//sym = printf("%c %c\n", ch, ch);
+	sym = printf("%s  %s", s4,s4);
+	printf("\n%d\n", sym);
 	  return (0);
 } 
