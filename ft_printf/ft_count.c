@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:40:55 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/18 20:04:52 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/19 21:32:20 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void ft_count(t_printf *myprintf, va_list args)
 {	
-    args+=0;
+    //args+=0;
     if (myprintf->spec == CHAR)
         ft_count_char(myprintf);
     else if (myprintf->spec == STRING)
@@ -22,9 +22,31 @@ void ft_count(t_printf *myprintf, va_list args)
 }
 
 void ft_count_str(t_printf *myprintf, va_list args)
-{	
-    myprintf->all_len += ft_strlen(va_arg(args, char*));
-    //printf("%d", myprintf->all_len);    
+{
+    int len;
+    int precision;
+    int width;
+
+    len = (int)ft_strlen(va_arg(args, char*));
+    precision = myprintf->precision;    
+    width = myprintf->width;    
+    if (precision == 0)
+        myprintf->precision += len;
+    if (width >= len)
+        myprintf->all_len += width;
+    else if (width > precision)
+        myprintf->all_len += precision;
+        else
+            myprintf->all_len += width;
+    
+        
+        
+        
+        
+    
+        /* myprintf->all_len += (width > precision ?
+                precision : width);
+         */
 }
 
 void ft_count_char(t_printf *myprintf)

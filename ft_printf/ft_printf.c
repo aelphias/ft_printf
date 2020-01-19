@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/18 19:18:59 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/19 20:07:52 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ int		ft_printf(const char *s, ...)
 			s1++;
 		}
     }
-	printf("myprint\n%d\n", myprintf.all_len);    	
+	printf("myprint: %d\n", myprintf.all_len);    	
     va_end(args);
 	return (1);
 }

@@ -44,11 +44,21 @@ int main(void)
 	// printf("orig:\n");
 	// sym = printf("%2.1s", s4);
 	// printf(" orig printed:%d", sym);
-	//ft_printf(" fsdfsd %d dgdfhgtt  + %0.d", );
-	ft_printf("%s  %s", s4,s4);
-	printf("original:\n");
-	//sym = printf("%c %c\n", ch, ch);
-	sym = printf("%s  %s", s4,s4);
-	printf("\n%d\n", sym);
+	//t_printf("  %d   + %0.d", );
+
+
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n####################  MY FT_PRINTF  ##########################\n");
+	ft_printf("%s", "meet");
+	printf("\noriginal: %d\n", printf("%s","meet"));
+	//printf("\noriginal: %d\n", printf("%*.0s", 2, "meet"));
 	  return (0);
-} 
+}
+
+
+// strlen
+// width
+// precision
+
+//if (width >= strlen)
+//	len = width
+//else if (min (width, pricision))
