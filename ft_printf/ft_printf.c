@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:06:30 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/19 20:07:52 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:11:54 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_parse_specification(t_printf *myprintf, char **s)
 		myprintf->spec = CHAR;
 	if (*copy)
 		(*s)++;
-	if (!myprintf->spec)    // DEL   /*% char */
-	printf("Specification: none\n");// DEL
+	/* if (!myprintf->spec)    // DEL   
+	//printf("Specification: none\n");// DEL
 		else// DEL
-	printf("Specification = %c\n", myprintf->spec);// DEL
-	//ft_count_str(myprintf, args);	
+	//printf("Specification = %c\n", myprintf->spec);// DEL
+	//ft_count_str(myprintf, args);	 */
 }
 void	ft_parse_size(t_printf *myprintf, char **s)
 {
@@ -75,7 +75,7 @@ void	ft_parse_size(t_printf *myprintf, char **s)
 		*size = SIZE_L;
 		++(*s);
 	}
-	printf("Additional size = %d\n", *size); // DEL
+	/* printf("Additional size = %d\n", *size); // DEL */
 	ft_parse_specification(myprintf, s);
 }
 
@@ -89,7 +89,7 @@ void	ft_parse_round_dot(int *astericks, char **s, va_list *check_length)
 			*astericks = va_arg(*check_length, int);
 			continue;
 		}
-		printf("{ astericks  %d\n}", *astericks);
+		//printf("{ astericks  %d\n}", *astericks);
 		while (ft_isdigit(**s))
 		{
 			*astericks *= 10;
@@ -107,14 +107,13 @@ void	ft_parse_width_n_precision(t_printf *myprintf, char **s)
 	width = &myprintf->width;
 	precision = &myprintf->precision;
 	
-	//printf("          S1 = %s\n", s);
+	 
 	ft_parse_round_dot(width, s, &myprintf->check_length);
 	myprintf->point +=  **s == '.' ? !!++(*s) : 0;
-	//printf("          S2 = %s\n", s);
+
 	ft_parse_round_dot(precision, s, &myprintf->check_length);
 
-	printf("Width = %d | point = %d | prec = %d\n",
-	myprintf->width, myprintf->point, myprintf->precision);
+	
 	
 	ft_parse_size(myprintf, s);
 }
@@ -147,7 +146,7 @@ void	  ft_parse_flags(t_printf *myprintf, char **s)
 		copy++;
 	}
 
-	////////////////////////////////
+	/* ////////////////////////////////
 	printf("Flags: "); //DEL
 	if (myprintf->flag)
 	{
@@ -165,7 +164,7 @@ void	  ft_parse_flags(t_printf *myprintf, char **s)
 	}
 	else
 		printf("	none\n");
-	//////////////////////////////
+	////////////////////////////// */
 	*s += copy - *s;
 	ft_parse_width_n_precision(myprintf, s);
 }
@@ -194,8 +193,7 @@ int		ft_printf(const char *s, ...)
 			myprintf.all_len++;
 			s1++;
 		}
-    }
-	printf("myprint: %d\n", myprintf.all_len);    	
+    }   	
     va_end(args);
-	return (1);
+	return (myprintf.all_len);
 }

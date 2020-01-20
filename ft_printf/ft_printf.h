@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:49:46 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/18 18:13:51 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:47:20 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef	struct	s_printf
 	//void	ft_parse_flags(t_printf *myprintf, const char *s);
 	//void	ft_init_struct_printf(t_printf *myprintf, const char *s, va_list args);
 	void	ft_count_str(t_printf *myprintf, va_list args);
+	void	ft_count_int(t_printf *myprintf, va_list args);
 	void ft_count(t_printf *myprintf, va_list args);
 	void ft_count_char(t_printf *myprintf);
 

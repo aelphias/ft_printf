@@ -6,7 +6,7 @@
 #    By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 13:58:56 by aelphias          #+#    #+#              #
-#    Updated: 2020/01/13 14:38:55 by aelphias         ###   ########.fr        #
+#    Updated: 2020/01/20 17:41:51 by aelphias         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME =			ft_printf_test
 
-SRC =			main.c
+SRC =			main_int.c #main.c
 
 OBJ =			$(SRC:.c=.o)
 
