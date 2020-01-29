@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:20:54 by bford             #+#    #+#             */
-/*   Updated: 2019/12/06 12:25:30 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/29 15:20:09 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					get_next_line(int fd, char **line, int clean);
 t_gnl				*ft_lstnew_gnl(int fd);
 
-int					ft_nbr_len(int n);
+long int			ft_nbr_len(long int n);
 int					ft_isint(const char *s, int sign, int first, int last);
 char				*ft_strjoin_free(char *s1, char const *s2);
 int					ft_delstr_arr(char **array);

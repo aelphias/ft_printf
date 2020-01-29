@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:40:55 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/22 20:50:26 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:48:20 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void ft_count(t_printf *myprintf, va_list args)
 		ft_count_char(myprintf);
 	else if (myprintf->spec == STRING)
 		ft_count_str(myprintf, args);
-	/* else if (myprintf->spec == INTEGER)
-		ft_count_int(myprintf, args);	 */
+	 else if (myprintf->spec == INTEGER)
+		ft_count_int(myprintf, args);
 }
 
 void ft_count_str(t_printf *myprintf, va_list args)
@@ -48,20 +48,22 @@ void ft_count_char(t_printf *myprintf)
 	myprintf->all_len += (myprintf->width ? myprintf->width : 1);
 }
 
-/* void ft_count_int(t_printf *myprintf, va_list args)
+void ft_count_int(t_printf *myprintf, va_list args)
 {	
 	int len;
 
-	if (myprintf->flag & SIZE_L)
+	len = 0;
+	if (myprintf->flag & SIZE_HH)
+		len = ft_nbr_len(va_arg(args, int));
+	else if (myprintf->flag & SIZE_H)
+		len = ft_nbr_len(va_arg(args, int));
+	else if (myprintf->flag & SIZE_L)
 		len = ft_nbr_len(va_arg(args, long int));
 	else if (myprintf->flag & SIZE_LL)
 		len = ft_nbr_len(va_arg(args, long long int));
-	else if (myprintf->flag & SIZE_LL)
-		len = ft_nbr_len(va_arg(args, long long int));
-	else if (myprintf->flag & SIZE_LL)
-		len = ft_nbr_len(va_arg(args, long long int));
-	myprintf->all_len += len;
+	else if (!(myprintf->flag))
+		len = ft_nbr_len(va_arg(args, int));
 	if (myprintf->flag & PLUS)
 		myprintf->all_len++;
+	myprintf->all_len +=len;
 }
- */

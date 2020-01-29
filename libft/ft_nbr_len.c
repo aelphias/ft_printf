@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbr_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bford <bford@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:39:15 by bford             #+#    #+#             */
-/*   Updated: 2019/11/05 19:41:18 by bford            ###   ########.fr       */
+/*   Updated: 2020/01/29 15:16:39 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_nbr_len(int n)
+long int		ft_nbr_len(long int n)
 {
-	int		len;
+	long int		len;
 
 	len = (n < 0 ? 2 : 1);
 	while ((n /= 10))
