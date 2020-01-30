@@ -6,13 +6,13 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:39:15 by bford             #+#    #+#             */
-/*   Updated: 2020/01/29 15:16:39 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:48:58 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long int		ft_nbr_len(long int n)
+long int	ft_nbr_len(long int n)
 {
 	long int		len;
 

@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:40:55 by aelphias          #+#    #+#             */
-/*   Updated: 2020/01/29 17:48:20 by aelphias         ###   ########.fr       */
+/*   Updated: 2020/01/30 22:50:51 by aelphias         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,25 @@ void ft_count_char(t_printf *myprintf)
 void ft_count_int(t_printf *myprintf, va_list args)
 {	
 	int len;
-
+	int num;
+	
 	len = 0;
-	if (myprintf->flag & SIZE_HH)
-		len = ft_nbr_len(va_arg(args, int));
-	else if (myprintf->flag & SIZE_H)
-		len = ft_nbr_len(va_arg(args, int));
+	if ((myprintf->flag & SIZE_HH) || (myprintf->flag & SIZE_H))
+		num = va_arg(args, int);
 	else if (myprintf->flag & SIZE_L)
-		len = ft_nbr_len(va_arg(args, long int));
+		num = va_arg(args, long int);
 	else if (myprintf->flag & SIZE_LL)
-		len = ft_nbr_len(va_arg(args, long long int));
-	else if (!(myprintf->flag))
-		len = ft_nbr_len(va_arg(args, int));
-	if (myprintf->flag & PLUS)
-		myprintf->all_len++;
-	myprintf->all_len +=len;
+		num = va_arg(args, long long int);
+	else
+		num = va_arg(args, int);
+	len = ft_nbr_len(num);
+	if ((myprintf->flag & PLUS) && (num > 0))
+		len++;
+	if ((myprintf->flag & SPACE) && (num > 0))
+		len++;
+	if ((myprintf->precision) > len)
+		len = myprintf->precision;	
+	myprintf->all_len +=len;	
+    printf("myprintf->precision:%d\n", myprintf->precision);
+	
 }
