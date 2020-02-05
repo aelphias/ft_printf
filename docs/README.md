@@ -5,4 +5,4 @@ to compile:
 make with one of main.c files - change them in Makefile
 to launch: ./ft_printf_test
 
-Project compiles on Mac os, for linux you should include some libraries
+Project compiles on Mac os, for linux you should include some additional libraries.
